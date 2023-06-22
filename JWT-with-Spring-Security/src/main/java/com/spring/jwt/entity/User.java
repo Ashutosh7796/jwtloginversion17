@@ -19,7 +19,7 @@ public class User {
     @Column(name = "user_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "user_id_generator")
     @SequenceGenerator(name = "user_id_generator", initialValue = 1000)
-    private int id;
+    private Integer id;
 
 
     @Column(name = "email", nullable = false, length = 250)

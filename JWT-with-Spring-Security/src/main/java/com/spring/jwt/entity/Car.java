@@ -99,8 +99,10 @@ public class Car {
 
 
 //    private Carphoto carphotoCarPhoto;
-    @OneToMany(mappedBy = "carCar")
-    private Set<Bidding> biddings = new LinkedHashSet<>();
+@ManyToMany
+@JoinTable(name = "dealer_bidding", joinColumns = @JoinColumn(name = "dealer_id"),
+        inverseJoinColumns = @JoinColumn(name = "bidding_id"))
+private Set<Bidding> biddings = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "carCar")
     private Set<PendingBooking> pendingBookings = new LinkedHashSet<>();
