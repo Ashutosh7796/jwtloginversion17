@@ -9,12 +9,16 @@ import lombok.Setter;
 public class RegisterDto {
 
 
-    private String email;
+    public String email;
     private String password;
-    private String mobileNo;
-    private String firstName;
-    private String lastName;
-    private String address;
-    private String city;
-    private String roles;
+    public String mobileNo;
+    public String firstName;
+    public String lastName;
+    public String address;
+    public String city;
+    public String roles;
+    public String adharShopact;
+    public String shopName;
+    public String area;
+    public String userType;
 }

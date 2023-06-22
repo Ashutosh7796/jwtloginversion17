@@ -8,7 +8,7 @@ import lombok.Setter;
 public class DealerDto {
     public String address;
 
-    public String adharShopact;
+   
 
     public String area;
 
@@ -20,9 +20,12 @@ public class DealerDto {
 
     public String mobileNo;
 
+    public String roles;
+
     public String shopName;
     public String email;
     public String password;
 
 
+    public String adharShopact;
 }

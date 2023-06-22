@@ -1,7 +1,8 @@
 package com.spring.jwt.controller;
 
+import com.spring.jwt.dto.DealerDto;
 import com.spring.jwt.dto.RegisterDto;
-import com.spring.jwt.dto.UserDTO;
+import com.spring.jwt.service.IDealer;
 import com.spring.jwt.service.UserService;
 import com.spring.jwt.utils.BaseResponseDTO;
 import lombok.RequiredArgsConstructor;
@@ -18,8 +19,15 @@ public class AccountController {
 
     private final UserService userService;
 
+    private final IDealer iDealer;
     @PostMapping("/register")
     public ResponseEntity<BaseResponseDTO> register(@RequestBody RegisterDto registerDto){
         return ResponseEntity.ok(userService.registerAccount(registerDto));
+
+    }
+
+    @PostMapping("/dalla")
+    public ResponseEntity<BaseResponseDTO> registerr(@RequestBody RegisterDto dealerDto) {
+        return ResponseEntity.ok(iDealer.adDealer(dealerDto));
     }
 }

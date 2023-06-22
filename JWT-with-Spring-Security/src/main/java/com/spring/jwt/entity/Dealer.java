@@ -2,7 +2,7 @@ package com.spring.jwt.entity;
 
 
 
-import com.spring.jwt.dto.DealerDto;
+import com.spring.jwt.dto.RegisterDto;
 import jakarta.persistence.*;
 import lombok.*;
 import java.util.LinkedHashSet;
@@ -19,7 +19,7 @@ public class Dealer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Dealer_id")
-    private Integer id;
+    private int id;
 
     @Column(name = "address")
     private String address;
@@ -46,10 +46,11 @@ public class Dealer {
     private String shopName;
     @Column(name = "Email",nullable = false)
     private String email;
+    @Column(name = "password", length = 250)
+    private String password;
 
-    @OneToOne
 
-
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_user_id")
     private User userUser;
 
@@ -63,15 +64,24 @@ public class Dealer {
     @OneToMany(mappedBy = "dealerVendor")
     private Set<Car> cars = new LinkedHashSet<>();
 
-    public Dealer(DealerDto dealerDto) {
-        this.address = dealerDto.address;
-        this.adharShopact = dealerDto.adharShopact;
-        this.area = dealerDto.area;
-        this.city =dealerDto.city;
-        this.fristname = dealerDto.fristname;
-        this.lastName = dealerDto.lastName;
-        this.mobileNo = dealerDto.mobileNo;
-        this.shopName = dealerDto.shopName;
-        this.email = dealerDto.email;
+    public Dealer(RegisterDto dealerDto) {
+        this.address = dealerDto.getAddress();
+        this.adharShopact = dealerDto.getAdharShopact();
+        this.area = dealerDto.getArea();
+        this.city = dealerDto.getCity();
+        this.fristname = dealerDto.getFirstName();
+        this.lastName = dealerDto.getLastName();
+        this.mobileNo = dealerDto.getMobileNo();
+        this.shopName = dealerDto.getShopName();
+        this.email = dealerDto.getEmail();
+        this.password = dealerDto.getPassword(); // Set the password field
+        User user = new User();
+        user.setEmail(dealerDto.getEmail());
+        user.setPassword(dealerDto.getPassword());
+        // Set any other necessary fields for the User object
+
+        this.userUser = user;
+        user.setDealers(this);
     }
+
 }
